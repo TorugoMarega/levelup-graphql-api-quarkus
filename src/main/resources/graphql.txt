@@ -1,0 +1,72 @@
+query{
+  listAllPerson{
+    id, first_name, last_name,age, cpf
+  }
+}
+
+mutation {
+    addPerson(person:{
+      first_name : "João"
+      last_name : "Baptista"
+      age: 21
+      cpf:"111111111111"
+    } ){
+    first_name,last_name,age,cpf
+  }
+}
+
+query{
+       listAllUsers{
+       id,
+       username,
+       email,
+       password_hash,
+       color_hex,
+       user_avatar_link,
+       user_image_link,
+       person{
+          first_name,
+          last_name,
+					age,
+          cpf
+       }
+       deleted
+  }
+}
+
+
+mutation {
+    addUser(user:{
+    person:{
+          first_name : "João"
+          last_name : "Baptista"
+          age: 21
+          cpf:"111111111111"
+        }
+        username : "JoaoGamer"
+        color_hex: "E1C775"
+        email: "joaogamer@teste.com"
+        password_hash: "@#!324asdadkllkj_*&sdfas"
+    } ){
+    id,username, email, color_hex
+  }
+}
+
+mutation {
+    addUser(
+      user:{
+        username : "JoaoGamer"
+        color_hex: "E1C775"
+        email: "joaogamer@teste.com"
+        password_hash: "@#!324asdadkllkj_*&sdfas"
+    	}
+    	person:{
+					first_name : "João"
+      		last_name : "Baptista"
+      		age: 21
+      		cpf:"111111111111"
+        }
+    ){
+    id,username, email, color_hex
+  }
+}
