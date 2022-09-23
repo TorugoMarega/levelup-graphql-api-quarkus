@@ -2,6 +2,7 @@ package br.com.torugo.resource;
 
 import br.com.torugo.domain.Person;
 import br.com.torugo.domain.User;
+import br.com.torugo.domain.UserMood;
 import br.com.torugo.service.UserService;
 import org.eclipse.microprofile.graphql.*;
 
@@ -44,4 +45,16 @@ public class UserResource {
         return this.service.updateUserUsernameColorEmail(user, id);
     }
 
+    @Mutation
+    @Description("Atualiza o mood do Usuário")
+    public User updateUserMood(@Name("id") Long id, @Name("userStatus") UserMood userStatus){
+        return this.service.updateUserMood(id, userStatus);
+    }
+
+    @Query
+    @Name("listAllMood")
+    @Description("Retorna a lista com todos os moods dos usuarios")
+    public List<String> listAllMood(){
+        return this.service.listAllMood();
+    }
 }

@@ -13,6 +13,9 @@ public class User extends PanacheEntity {
     @PrimaryKeyJoinColumn
     private Person person;
 
+    @Enumerated(EnumType.STRING)
+    private UserMood userMood = UserMood.NEUTRO;
+
     @Column(name = "username")
     private String username;
 
@@ -89,6 +92,14 @@ public class User extends PanacheEntity {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public UserMood getUserMood() {
+        return userMood;
+    }
+
+    public void setUserMood(UserMood userMood) {
+        this.userMood = userMood;
     }
 
     public Boolean getDeleted() {

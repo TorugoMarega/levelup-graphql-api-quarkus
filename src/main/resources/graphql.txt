@@ -1,19 +1,12 @@
+#----------------------LISTAR TODOS OS ATRIBUTOS DE TODAS AS PESSOAS------------------------------
+
 query{
   listAllPerson{
     id, first_name, last_name,age, cpf
   }
 }
 
-mutation {
-    addPerson(person:{
-      first_name : "João"
-      last_name : "Baptista"
-      age: 21
-      cpf:"111111111111"
-    } ){
-    first_name,last_name,age,cpf
-  }
-}
+#----------------------LISTAR TODOS OS ATRIBUTOS DE TODOS OS USUARIOS------------------------------
 
 query{
        listAllUsers{
@@ -35,6 +28,8 @@ query{
   }
 }
 
+#----------------------ADICIONAR UM NOVO USUARIO------------------------------
+
 mutation {
     addUser(
       user:{
@@ -50,7 +45,7 @@ mutation {
       		cpf:"111111111111"
         }
     ){
-    id,username, email, color_hex,profile_avatar,profile_picture,
+    id,username, email, color_hex,profile_avatar,profile_picture,userMood
     person{
       id
       first_name,
@@ -61,6 +56,8 @@ mutation {
   }
 }
 
+#----------------------INATIVAR UM USUARIO------------------------------
+
 mutation {
     deleteUser(user:{
 				id:1
@@ -69,10 +66,29 @@ mutation {
   }
 }
 
+#----------------------ATIVAR UM USUARIO------------------------------
+
 mutation {
     activateUser(user:{
 				id:1
     } ){
     id,username, email, deleted
   }
+}
+
+#----------------------ATUALIZAR HUMOR DO USUARIO------------------------------
+
+mutation {
+    updateUserMood(
+      id:1
+      userStatus:PISTOLA
+    ){
+    id,username,userMood
+  }
+}
+
+#----------------------LISTA HUMORES DISPONIVEIS------------------------------
+
+query{
+  listAllMood
 }
