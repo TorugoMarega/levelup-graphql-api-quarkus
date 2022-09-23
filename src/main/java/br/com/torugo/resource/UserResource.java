@@ -26,4 +26,22 @@ public class UserResource {
         return this.service.addUser(user, person);
     }
 
+    @Mutation
+    @Description("Atualiza o campo Deleted como TRUE no Usuario escolhido pelo ID")
+    public User deleteUser(@Name("id") Long id){
+        return this.service.deleteUser(id);
+    }
+
+    @Mutation
+    @Description("Atualiza o campo Deleted como FALSE no Usuario escolhido pelo ID")
+    public User activateUser(@Name("id") Long id){
+        return this.service.activateUser(id);
+    }
+
+    @Mutation
+    @Description("Pode atualizar os campos (username, color_hex e email) do Usuario")
+    public User updateUserUsernameColorEmail(User user, @Name("id") Long id){
+        return this.service.updateUserUsernameColorEmail(user, id);
+    }
+
 }

@@ -20,9 +20,14 @@ public class PersonResource {
     }
 
     @Mutation
-    public Person addPerson(Person person){
-        return service.addPerson(person);
+    public Person updatePerson(Person person, @Name("id") Long id){
+        return this.service.updatePerson(person, id);
     }
+
+//    @Mutation
+//    public Person addPerson(Person person){
+//        return service.addPerson(person);
+//    }
 
 
 
@@ -32,10 +37,5 @@ public class PersonResource {
 //        address.setNumber(123);
 //        address.setStreet("Rua sem nome");
 //        return address;
-//    }
-//
-//    @Mutation
-//    public Person addPerson(Person person){
-//        return person;
 //    }
 }

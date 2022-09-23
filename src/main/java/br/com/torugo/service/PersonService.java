@@ -10,17 +10,34 @@ import java.util.List;
 @ApplicationScoped
 public class PersonService {
 
-    @Transactional
-    public Person addPerson(Person person){
-        Person newPerson = person;
-        person.persist();
-        return newPerson;
-    }
+//    @Transactional
+//    public Person addPerson(Person person){
+//        Person newPerson = person;
+//        person.persist();
+//        return newPerson;
+//    }
 
 
     public List<Person> listAllPerson(){
         return Person.listAll();
     }
 
-
+    @Transactional
+    public Person updatePerson(Person person, Long id){
+        Person updatePerson = Person.findById(id);
+        if(person.getFirst_name() != null ){
+            updatePerson.setFirst_name(person.getFirst_name());
+        }
+        if (person.getLast_name() != null) {
+            updatePerson.setLast_name(person.getLast_name());
+        }
+        if (person.getCpf() != null) {
+            updatePerson.setCpf(person.getCpf());
+        }
+        if (person.getAge() != null) {
+            updatePerson.setAge(person.getAge());
+        }
+        updatePerson.persist();
+        return updatePerson;
+    }
 }

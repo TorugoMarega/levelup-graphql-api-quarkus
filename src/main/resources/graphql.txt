@@ -22,33 +22,16 @@ query{
        email,
        password_hash,
        color_hex,
-       user_avatar_link,
-       user_image_link,
+       profile_avatar,
+       profile_picture,
        person{
+          id,
           first_name,
           last_name,
-					age,
+		  age,
           cpf
        }
        deleted
-  }
-}
-
-
-mutation {
-    addUser(user:{
-    person:{
-          first_name : "João"
-          last_name : "Baptista"
-          age: 21
-          cpf:"111111111111"
-        }
-        username : "JoaoGamer"
-        color_hex: "E1C775"
-        email: "joaogamer@teste.com"
-        password_hash: "@#!324asdadkllkj_*&sdfas"
-    } ){
-    id,username, email, color_hex
   }
 }
 
@@ -67,6 +50,29 @@ mutation {
       		cpf:"111111111111"
         }
     ){
-    id,username, email, color_hex
+    id,username, email, color_hex,profile_avatar,profile_picture,
+    person{
+      id
+      first_name,
+      last_name,
+      age
+      cpf
+    }
+  }
+}
+
+mutation {
+    deleteUser(user:{
+				id:1
+    } ){
+    id,username, email, deleted
+  }
+}
+
+mutation {
+    activateUser(user:{
+				id:1
+    } ){
+    id,username, email, deleted
   }
 }
