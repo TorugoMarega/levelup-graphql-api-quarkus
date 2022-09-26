@@ -15,6 +15,8 @@ query{
        email,
        password_hash,
        color_hex,
+       userMood,
+       role,
        profile_avatar,
        profile_picture,
        person{
@@ -22,7 +24,12 @@ query{
           first_name,
           last_name,
 		  age,
-          cpf
+          cpf,
+          college{
+            course,
+            university,
+            period
+          }
        }
        deleted
   }
@@ -37,12 +44,41 @@ mutation {
         color_hex: "E1C775"
         email: "joaogamer@teste.com"
         password_hash: "@#!324asdadkllkj_*&sdfas"
+        role: "MAGO"
     	}
     	person:{
 					first_name : "João"
       		last_name : "Baptista"
       		age: 21
       		cpf:"111111111111"
+        }
+    ){
+    id,username, email, color_hex,userMood,role, profile_avatar,profile_picture,
+    person{
+      id
+      first_name,
+      last_name,
+      age
+      cpf
+    }
+  }
+}
+
+
+mutation {
+    addUser(
+      user:{
+        username : "Leticia101"
+        color_hex: "FFF"
+        email: "lele101@teste.com"
+        password_hash: "zczxcasldçlxznl##zcx"
+        role: "Bruxa"
+    	}
+    	person:{
+					first_name : "Leticia"
+      		last_name : "Silva"
+      		age: 18
+      		cpf:"32165478933"
         }
     ){
     id,username, email, color_hex,profile_avatar,profile_picture,userMood
@@ -55,6 +91,7 @@ mutation {
     }
   }
 }
+
 
 #----------------------INATIVAR UM USUARIO------------------------------
 
@@ -91,4 +128,61 @@ mutation {
 
 query{
   listAllMood
+}
+
+#----------------------ATUALIZA INFORMAÇÕES ACADEMICAS DA PESSOA------------------------------
+mutation{
+  updateUserPersonCollege(
+    id:1,
+    college:{
+      course:"Ciência da Computação"
+    }
+  ){
+    id,
+    course,
+    university,
+    period
+  }
+}
+
+
+
+
+#---------------------------------------------------------------------------
+mutation {
+    addUser(
+      user:{
+        username : "JoaoGamer"
+        color_hex: "E1C775"
+        email: "joaogamer@teste.com"
+        password_hash: "@#!324asdadkllkj_*&sdfas"
+        role: "MAGO"
+      },
+    	person:{
+					first_name : "João"
+      		last_name : "Baptista"
+      		age: 21
+      		cpf:"111111111111"
+      },
+      college:{
+        course:"Sistemas de Informação",
+        university:"Universidade Federal de Uberlândia",
+        period:"Segundo"
+      }
+    ){
+    id,username, email, color_hex,userMood,role, profile_avatar,profile_picture,
+    person{
+      id
+      first_name,
+      last_name,
+      age
+      cpf,
+
+      college{
+      	course,
+      	university,
+      	period
+    	}
+    }
+  }
 }

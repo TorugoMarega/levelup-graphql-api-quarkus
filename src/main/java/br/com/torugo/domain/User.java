@@ -13,8 +13,8 @@ public class User extends PanacheEntity {
     @PrimaryKeyJoinColumn
     private Person person;
 
-    @Enumerated(EnumType.STRING)
-    private UserMood userMood = UserMood.NEUTRO;
+    @Column(name = "mood", length = 12)
+    private String userMood = UserMood.NEUTRO.toString();
 
     @Column(name = "username")
     private String username;
@@ -25,8 +25,11 @@ public class User extends PanacheEntity {
     @Column(name = "password_hash")
     private String password_hash;
 
-    @Column(name = "color_hex")
+    @Column(name = "color_hex", length = 6)
     private String color_hex;
+
+    @Column(name = "role", length = 20)
+    private String role;
 
     @Column(name = "profile_picture")
     private String profile_picture = "https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png";
@@ -94,12 +97,20 @@ public class User extends PanacheEntity {
         this.person = person;
     }
 
-    public UserMood getUserMood() {
+    public String getUserMood() {
         return userMood;
     }
 
-    public void setUserMood(UserMood userMood) {
+    public void setUserMood(String userMood) {
         this.userMood = userMood;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Boolean getDeleted() {

@@ -1,5 +1,6 @@
 package br.com.torugo.resource;
 
+import br.com.torugo.domain.College;
 import br.com.torugo.domain.Person;
 import br.com.torugo.service.PersonService;
 import org.eclipse.microprofile.graphql.*;
@@ -15,14 +16,26 @@ public class PersonResource {
 
     @Query
     @Name("listAllPerson")
+    @Description("Retorna lista com todas as pessoas cadastradas")
     public List<Person> listAllPerson(){
         return this.service.listAllPerson();
     }
 
     @Mutation
-    public Person updatePerson(Person person, @Name("id") Long id){
+    @Name("updateUserPerson")
+    @Description("Atualiza os campos de pessoa")
+    public Person updateUserPerson(Person person, @Name("id") Long id){
         return this.service.updatePerson(person, id);
     }
+
+    @Mutation
+    @Name("updateUserPersonCollege")
+    @Description("Atualiza os dados academicos de uma pessoa")
+    public College updateUserPersonCollege(College college, @Name("id") Long id){
+        return this.service.updateCollege(college, id);
+    }
+
+
 
 //    @Mutation
 //    public Person addPerson(Person person){

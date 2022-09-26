@@ -1,5 +1,6 @@
 package br.com.torugo.service;
 
+import br.com.torugo.domain.College;
 import br.com.torugo.domain.Person;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -39,5 +40,21 @@ public class PersonService {
         }
         updatePerson.persist();
         return updatePerson;
+    }
+
+    @Transactional
+    public College updateCollege(College college, Long id){
+        College updateCollege = College.findById(id);
+        if(college.getCourse() != null ){
+            updateCollege.setCourse(college.getCourse());
+        }
+        if(college.getUniversity() != null ){
+            updateCollege.setUniversity(college.getUniversity());
+        }
+        if(college.getPeriod() != null ){
+            updateCollege.setPeriod(college.getPeriod());
+        }
+        updateCollege.persist();
+        return updateCollege;
     }
 }

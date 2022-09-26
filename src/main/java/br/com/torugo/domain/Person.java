@@ -24,6 +24,11 @@ public class Person extends PanacheEntity {
     @Column(name = "cpf")
     private String cpf;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @MapsId
+    @PrimaryKeyJoinColumn
+    private College college;
+
     public String getFirst_name() {
         return first_name;
     }
@@ -56,4 +61,11 @@ public class Person extends PanacheEntity {
         this.cpf = cpf;
     }
 
+    public College getCollege() {
+        return college;
+    }
+
+    public void setCollege(College college) {
+        this.college = college;
+    }
 }
