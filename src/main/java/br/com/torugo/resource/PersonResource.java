@@ -1,7 +1,7 @@
 package br.com.torugo.resource;
 
-import br.com.torugo.domain.College;
-import br.com.torugo.domain.Person;
+import br.com.torugo.model.College;
+import br.com.torugo.model.Person;
 import br.com.torugo.service.PersonService;
 import org.eclipse.microprofile.graphql.*;
 

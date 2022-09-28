@@ -1,7 +1,7 @@
 package br.com.torugo.service;
 
-import br.com.torugo.domain.College;
-import br.com.torugo.domain.Person;
+import br.com.torugo.model.College;
+import br.com.torugo.model.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -35,8 +35,8 @@ public class PersonService {
         if (person.getCpf() != null) {
             updatePerson.setCpf(person.getCpf());
         }
-        if (person.getAge() != null) {
-            updatePerson.setAge(person.getAge());
+        if (person.getBirthdate() != null) {
+            updatePerson.setBirthdate(person.getBirthdate());
         }
         updatePerson.persist();
         return updatePerson;
@@ -57,4 +57,6 @@ public class PersonService {
         updateCollege.persist();
         return updateCollege;
     }
+
+
 }

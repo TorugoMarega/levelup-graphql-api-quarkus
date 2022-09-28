@@ -1,8 +1,75 @@
-#----------------------LISTAR TODOS OS ATRIBUTOS DE TODAS AS PESSOAS------------------------------
+#----------------------ADICIONAR UM NOVO USUARIO------------------------------
 
-query{
-  listAllPerson{
-    id, first_name, last_name,age, cpf
+mutation {
+    addUser(
+      user:{
+        username : "JoaoGamer"
+        color_hex: "E1C775"
+        email: "joaogamer@teste.com"
+        password_hash: "@#!324asdadkllkj_*&sdfas"
+        role: "MAGO"
+    	}
+    	    person:{
+					first_name : "João"
+      		last_name : "Baptista"
+      		cpf:"111111111111",
+      		birthdate:"29/01/2000"
+      }
+
+    ){
+    id,username, email, color_hex,userMood,role, profile_avatar,profile_picture,
+    hobbies{
+      id
+      hobbie
+    }
+    person{
+      id
+      first_name,
+      last_name,
+      birthdate,
+      cpf,
+      college{
+        id,
+        course,
+        university,
+        period
+      }
+    }
+  }
+}
+
+
+mutation {
+    addUser(
+      user:{
+        username : "Leticia101"
+        color_hex: "FFF"
+        email: "lele101@teste.com"
+        password_hash: "zczxcasldçlxznl##zcx"
+        role: "Bruxa"
+    	}
+    	person:{
+			first_name : "Leticia"
+      		last_name : "Silva"
+      		age: 18
+      		cpf:"32165478933",
+      		birthdate:"29/01/2000"
+        }
+    ){
+    id,username, email, color_hex,profile_avatar,profile_picture,userMood
+    person{
+      id
+      first_name,
+      last_name,
+      birthdate,
+      cpf,
+     college{
+             id,
+             course,
+             university,
+             period
+      }
+    }
   }
 }
 
@@ -19,11 +86,13 @@ query{
        role,
        profile_avatar,
        profile_picture,
+			 hobbies{
+        hobbie
+      }
        person{
-          id,
           first_name,
           last_name,
-		  age,
+		  birthdate,
           cpf,
           college{
             course,
@@ -35,70 +104,139 @@ query{
   }
 }
 
-#----------------------ADICIONAR UM NOVO USUARIO------------------------------
 
-mutation {
-    addUser(
-      user:{
-        username : "JoaoGamer"
-        color_hex: "E1C775"
-        email: "joaogamer@teste.com"
-        password_hash: "@#!324asdadkllkj_*&sdfas"
-        role: "MAGO"
-    	}
-    	person:{
-					first_name : "João"
-      		last_name : "Baptista"
-      		age: 21
-      		cpf:"111111111111"
-        }
-    ){
-    id,username, email, color_hex,userMood,role, profile_avatar,profile_picture,
-    person{
-      id
-      first_name,
-      last_name,
-      age
-      cpf
-    }
+#----------------------LISTAR TODOS OS ATRIBUTOS DE TODAS AS PESSOAS------------------------------
+
+query{
+  listAllPerson{
+    id, first_name, last_name,birthdate, cpf
   }
 }
 
 
-mutation {
-    addUser(
-      user:{
-        username : "Leticia101"
-        color_hex: "FFF"
-        email: "lele101@teste.com"
-        password_hash: "zczxcasldçlxznl##zcx"
-        role: "Bruxa"
-    	}
-    	person:{
-					first_name : "Leticia"
-      		last_name : "Silva"
-      		age: 18
-      		cpf:"32165478933"
-        }
-    ){
-    id,username, email, color_hex,profile_avatar,profile_picture,userMood
-    person{
-      id
-      first_name,
-      last_name,
-      age
-      cpf
-    }
+
+#----------------------RETORNAR USUARIO PELO ID------------------------------
+
+query{
+       findUserById(id:1){
+       id,
+       username,
+       email,
+       password_hash,
+       color_hex,
+       userMood,
+       role,
+       profile_avatar,
+       profile_picture,
+       person{
+          id,
+          first_name,
+          last_name,
+		  birthdate,
+          cpf,
+          college{
+            course,
+            university,
+            period
+          }
+       }
+       deleted
   }
 }
 
+#----------------------RETORNAR USUARIOS ATIVOS OU INATIVOS------------------------------
+
+query{
+       findByDeleted(deleted: false){
+       id,
+       username,
+       email,
+       password_hash,
+       color_hex,
+       userMood,
+       role,
+       profile_avatar,
+       profile_picture,
+       person{
+          id,
+          first_name,
+          last_name,
+		  birthdate,
+          cpf,
+          college{
+            course,
+            university,
+            period
+          }
+       }
+       deleted
+  }
+}
+
+#----------------------RETORNAR USUARIOS PELO USERNAME------------------------------
+
+query{
+       findByUserName(username:"jo"){
+       id,
+       username,
+       email,
+       password_hash,
+       color_hex,
+       userMood,
+       role,
+       profile_avatar,
+       profile_picture,
+       person{
+          id,
+          first_name,
+          last_name,
+		  birthdate,
+          cpf,
+          college{
+            course,
+            university,
+            period
+          }
+       }
+       deleted
+  }
+}
+
+#----------------------RETORNAR USUARIOS PELO NOME------------------------------
+
+query{
+       findByPersonName(name:"sil"){
+       id,
+       username,
+       email,
+       password_hash,
+       color_hex,
+       userMood,
+       role,
+       profile_avatar,
+       profile_picture,
+       person{
+          id,
+          first_name,
+          last_name,
+		  birthdate,
+          cpf,
+          college{
+            course,
+            university,
+            period
+          }
+       }
+       deleted
+  }
+}
 
 #----------------------INATIVAR UM USUARIO------------------------------
 
-mutation {
-    deleteUser(user:{
-				id:1
-    } ){
+mutation{
+  deleteUser(
+    id:1
+  ){
     id,username, email, deleted
   }
 }
@@ -106,7 +244,7 @@ mutation {
 #----------------------ATIVAR UM USUARIO------------------------------
 
 mutation {
-    activateUser(user:{
+    activateUser({
 				id:1
     } ){
     id,username, email, deleted
@@ -149,6 +287,30 @@ mutation{
 
 
 #---------------------------------------------------------------------------
+mutation{
+  addHobbie(
+  hobbie:{
+  hobbie:"jogar bola"
+  user:{
+    id:1
+  }
+  }){
+    id,hobbie,user{
+      id
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 mutation {
     addUser(
       user:{

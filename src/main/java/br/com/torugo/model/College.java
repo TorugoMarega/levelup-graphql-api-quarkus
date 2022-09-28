@@ -1,4 +1,4 @@
-package br.com.torugo.domain;
+package br.com.torugo.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "college")
+@Table(name = "college")
 public class College extends PanacheEntity {
 
     private String course;

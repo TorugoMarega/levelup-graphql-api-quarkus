@@ -1,6 +1,6 @@
 package br.com.torugo.resource;
 
-import br.com.torugo.domain.Address;
+import br.com.torugo.model.Address;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;
 import org.eclipse.microprofile.graphql.Query;

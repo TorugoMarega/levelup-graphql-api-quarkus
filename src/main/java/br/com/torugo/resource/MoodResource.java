@@ -1,21 +1,22 @@
 package br.com.torugo.resource;
 
-import br.com.torugo.domain.User;
-import br.com.torugo.domain.UserMood;
+import br.com.torugo.model.User;
+import br.com.torugo.model.UserMood;
 import br.com.torugo.service.MoodService;
-import br.com.torugo.service.UserService;
 import org.eclipse.microprofile.graphql.*;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @GraphQLApi
 public class MoodResource {
+    @Inject
     MoodService moodService;
 
     @Mutation
     @Description("Atualiza o mood do Usuário")
-    public User updateUserMood(@Name("id") Long id, @Name("userStatus") UserMood userStatus){
-        return this.moodService.updateUserMood(id, userStatus);
+    public User updateUserMood(@Name("id") Long id, @Name("userMood") UserMood userMood){
+        return this.moodService.updateUserMood(id, userMood);
     }
 
     @Query

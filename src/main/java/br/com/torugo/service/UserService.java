@@ -1,14 +1,14 @@
 package br.com.torugo.service;
 
-import br.com.torugo.domain.College;
-import br.com.torugo.domain.Person;
-import br.com.torugo.domain.User;
-import br.com.torugo.domain.UserMood;
+import br.com.torugo.model.College;
+import br.com.torugo.model.Hobbie;
+import br.com.torugo.model.Person;
+import br.com.torugo.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @ApplicationScoped
 public class UserService {
@@ -19,7 +19,10 @@ public class UserService {
 
     @Transactional
     public User addUser(User user, Person person){
+        College college = new College();
+        person.setCollege(college);
         user.setPerson(person);
+        person.persist();
         user.persist();
         return user;
     }
@@ -55,4 +58,20 @@ public class UserService {
         updateUser.persist();
         return updateUser;
     }
+
+    public User findUserById(Long id){
+        return User.findById(id);
+    }
+
+    public List<User> findByUserName(String username){
+        return User.findByUserNameContaining(username);
+    }
+    public List<User> findByPersonName(String name){
+        return User.findByPersonNameContaining(name);
+    }
+
+    public List<User> findByDeleted(Boolean deleted){
+        return User.findByDeleted(deleted);
+    }
+
 }

@@ -1,13 +1,14 @@
-package br.com.torugo.domain;
+package br.com.torugo.model;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.smallrye.graphql.api.Nullable;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(schema = "person")
+@Table(name = "person")
 public class Person extends PanacheEntity {
 
 
@@ -17,9 +18,9 @@ public class Person extends PanacheEntity {
     @Column(name = "last_name")
     private String last_name;
 
-    @Nullable
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "birthdate")
+    @JsonbDateFormat(value = "dd/MM/yyyy", locale = "pt,br")
+    private LocalDate birthdate;
 
     @Column(name = "cpf")
     private String cpf;
@@ -27,7 +28,7 @@ public class Person extends PanacheEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @MapsId
     @PrimaryKeyJoinColumn
-    private College college;
+    private College college=null;
 
     public String getFirst_name() {
         return first_name;
@@ -45,12 +46,12 @@ public class Person extends PanacheEntity {
         this.last_name = last_name;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getCpf() {

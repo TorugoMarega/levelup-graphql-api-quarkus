@@ -1,4 +1,4 @@
-package br.com.torugo.domain;
+package br.com.torugo.model;
 
 public enum UserMood {
 

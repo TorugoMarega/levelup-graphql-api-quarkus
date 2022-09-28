@@ -1,3 +1,6 @@
+#Nano
+nano.18827.save
+
 #Maven
 target/
 pom.xml.tag
@@ -38,3 +41,4 @@ nb-configuration.xml
 
 # Local environment
 .env
+

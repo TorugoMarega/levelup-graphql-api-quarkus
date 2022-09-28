@@ -1,7 +1,7 @@
 package br.com.torugo.service;
 
-import br.com.torugo.domain.User;
-import br.com.torugo.domain.UserMood;
+import br.com.torugo.model.User;
+import br.com.torugo.model.UserMood;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;

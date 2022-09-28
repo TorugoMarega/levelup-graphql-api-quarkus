@@ -1,4 +1,4 @@
-package br.com.torugo.domain;
+package br.com.torugo.model;
 
 public class Address {
     private String street;
