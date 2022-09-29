@@ -1,5 +1,6 @@
 package br.com.torugo.model;
 
+import br.com.torugo.model.Skills.SoftHardSkill;
 import br.com.torugo.model.Skills.StrongWeakSkill;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
@@ -22,10 +23,10 @@ public class User extends PanacheEntity {
     @Column(length = 12)
     private String userMood = UserMood.NEUTRO.toString();
 
-
+    //@Column(unique = true)
     private String username;
 
-
+    //@Column(unique = true)
     private String email;
 
 
@@ -35,8 +36,10 @@ public class User extends PanacheEntity {
     private String color_hex;
 
     @Column(length = 20)
-    private String role;
+    private Role role = Role.APPRENTICE;
 
+    @Column(length = 20)
+    private String classe;
 
     private String profile_picture = "https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png";
 
@@ -55,6 +58,9 @@ public class User extends PanacheEntity {
 
     @OneToMany(mappedBy = "user")
     private List<StrongWeakSkill>strongWeakSkills;
+
+    @OneToMany(mappedBy = "user")
+    private List<SoftHardSkill>softHardSkills;
 
     public static List<User> findByUserNameContaining(String username) {
         return find("username like CONCAT('%',?1, '%') ", username).list();

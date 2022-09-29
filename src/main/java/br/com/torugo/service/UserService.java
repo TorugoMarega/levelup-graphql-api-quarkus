@@ -1,17 +1,19 @@
 package br.com.torugo.service;
 
 import br.com.torugo.model.College;
-import br.com.torugo.model.Hobbie;
 import br.com.torugo.model.Person;
+import br.com.torugo.model.Skills.SoftHardSkill;
 import br.com.torugo.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 
 @ApplicationScoped
 public class UserService {
+
 
     public List<User> listAllUsers(){
         return User.listAll();
@@ -23,6 +25,9 @@ public class UserService {
         person.setCollege(college);
         user.setPerson(person);
         person.persist();
+        List<SoftHardSkill> softHardSkillList = SoftHardSkill.generateSoftHardSkillList();
+        SoftHardSkill.persist(softHardSkillList);
+        user.setSoftHardSkills(softHardSkillList);
         user.persist();
         return user;
     }
@@ -59,6 +64,7 @@ public class UserService {
         return updateUser;
     }
 
+    //--------------------------------- FILTROS --------------------------------
     public User findUserById(Long id){
         return User.findById(id);
     }
@@ -73,5 +79,21 @@ public class UserService {
     public List<User> findByDeleted(Boolean deleted){
         return User.findByDeleted(deleted);
     }
+
+
+
+    //--------------------------------- ATUALIZA SENHA --------------------------------
+    @Transactional
+    public String updatePassWord (Long id, String newPassword){
+        User user = User.findById(id);
+        String oldPassword = user.getPassword_hash();
+        if(!Objects.equals(newPassword, oldPassword) & newPassword != null){
+            user.setPassword_hash(newPassword);
+            user.persist();
+        }
+        return "Password Updated!";
+    }
+
+
 
 }
