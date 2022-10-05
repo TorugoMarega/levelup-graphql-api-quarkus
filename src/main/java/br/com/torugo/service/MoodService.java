@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+
 public class MoodService {
 
     @Transactional

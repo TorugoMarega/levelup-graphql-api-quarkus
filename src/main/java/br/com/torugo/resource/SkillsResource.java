@@ -11,7 +11,7 @@ import java.util.List;
 
 @GraphQLApi
 public class SkillsResource {
-    @Inject
+
     private SkillsService service;
     //----------------------------- STRONG AND WEAK SKILLS-------------------------------------
 

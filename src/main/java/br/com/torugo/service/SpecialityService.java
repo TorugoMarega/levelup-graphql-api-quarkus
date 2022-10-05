@@ -1,12 +1,12 @@
 package br.com.torugo.service;
+
 import br.com.torugo.model.Speciality;
 import br.com.torugo.model.User;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@ApplicationScoped
+
 public class SpecialityService {
 
     public List<Speciality> listAllSpecialities(){

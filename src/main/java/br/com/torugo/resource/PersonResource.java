@@ -6,34 +6,37 @@ import br.com.torugo.service.PersonService;
 import org.eclipse.microprofile.graphql.*;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @GraphQLApi
 public class PersonResource {
 
-    @Inject
-    private PersonService service;
-
-    @Query
-    @Name("listAllPerson")
-    @Description("Retorna lista com todas as pessoas cadastradas")
-    public List<Person> listAllPerson(){
-        return this.service.listAllPerson();
-    }
-
-    @Mutation
-    @Name("updateUserPerson")
-    @Description("Atualiza os campos de pessoa")
-    public Person updateUserPerson(Person person, @Name("id") Long id){
-        return this.service.updatePerson(person, id);
-    }
-
-    @Mutation
-    @Name("updateUserPersonCollege")
-    @Description("Atualiza os dados academicos de uma pessoa")
-    public College updateUserPersonCollege(College college, @Name("id") Long id){
-        return this.service.updateCollege(college, id);
-    }
+//
+//    private PersonService service = new PersonService();
+//
+//    @Query
+//    @Name("listAllPerson")
+//    @Description("Retorna lista com todas as pessoas cadastradas")
+//    public List<Person> listAllPerson(){
+//        return this.service.listAllPerson();
+//    }
+//
+//    @Mutation
+//    @Transactional
+//    @Name("updateUserPerson")
+//    @Description("Atualiza os campos de pessoa")
+//    public Person updateUserPerson(Person person, @Name("id") Long id){
+//        return this.service.updatePerson(person, id);
+//    }
+//
+//    @Mutation
+//    @Transactional
+//    @Name("updateUserPersonCollege")
+//    @Description("Atualiza os dados academicos de uma pessoa")
+//    public College updateUserPersonCollege(College college, @Name("id") Long id){
+//        return this.service.updateCollege(college, id);
+//    }
 
 
 

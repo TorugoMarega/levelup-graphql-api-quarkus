@@ -6,10 +6,14 @@ import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.core.MediaType;
+import java.awt.*;
+import java.io.InputStream;
 
 @GraphQLApi
 public class PictureResource {
-    @Inject
+
     private PictureService service;
 
     @Mutation
@@ -23,6 +27,12 @@ public class PictureResource {
     public String updateAvatarPicture(Long id, String newPicture){
         return this.service.updateAvatarPicture(id,newPicture);
     }
-
-
+//
+//    @Mutation
+//    @Description("Upload imagem")
+//    @Consumes(MediaType.MULTIPART_FORM_DATA)
+//    public String uploadProfilePicture (InputStream input){
+//        input.
+//        return "Upload com sucesso!";
+//    }
 }
