@@ -1,12 +1,10 @@
 package br.com.torugo.resource;
 
-import br.com.torugo.model.Person;
+import br.com.torugo.model.College;
 import br.com.torugo.model.User;
 import br.com.torugo.service.UserService;
 import org.eclipse.microprofile.graphql.*;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -47,10 +45,18 @@ public class UserResource {
     @Mutation
     @Transactional
     @Description("Pode atualizar o campo (Course) do Usuario")
-    public User updateUserCollegeInformation (Long userId, Long courseId){
-        return this.service.updateUserCollegeInformation(userId, courseId);
+    public User updateUserCollegeInformation (Long userId, College college){
+        return this.service.updateUserCollegeInformation(userId, college);
     }
 
+    @Mutation
+    @Transactional
+    @Description("Deleta campo College do User")
+    public String deleteUserCollege (Long userId){
+       User user =  User.findById(userId);
+       user.getCollegeInformation().delete();
+       return "Deleted";
+    }
 //    @Mutation
 //    @Transactional
 //    public User updateUser(User user, @Name("id") Long id){

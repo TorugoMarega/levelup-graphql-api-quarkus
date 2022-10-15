@@ -1,24 +1,19 @@
 package br.com.torugo.resource;
 
+import br.com.torugo.model.User;
 import br.com.torugo.service.PictureService;
 import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.core.MediaType;
-import java.awt.*;
-import java.io.InputStream;
-
 @GraphQLApi
 public class PictureResource {
 
-    private PictureService service;
+    private PictureService service = new PictureService();
 
     @Mutation
     @Description("Atualiza a foto de perfil")
-    public String updateProfilePicture(Long id, String newPicture){
+    public User updateProfilePicture(Long id, String newPicture){
         return this.service.updateProfilePicture(id,newPicture);
     }
 
@@ -27,12 +22,13 @@ public class PictureResource {
     public String updateAvatarPicture(Long id, String newPicture){
         return this.service.updateAvatarPicture(id,newPicture);
     }
-//
-//    @Mutation
-//    @Description("Upload imagem")
-//    @Consumes(MediaType.MULTIPART_FORM_DATA)
-//    public String uploadProfilePicture (InputStream input){
-//        input.
-//        return "Upload com sucesso!";
-//    }
+
+////
+////    @Mutation
+////    @Description("Upload imagem")
+////    @Consumes(MediaType.MULTIPART_FORM_DATA)
+////    public String uploadProfilePicture (InputStream input){
+////        input.
+////        return "Upload com sucesso!";
+////    }
 }

@@ -3,16 +3,17 @@ package br.com.torugo.resource;
 import br.com.torugo.model.Skills.SoftHardSkill;
 import br.com.torugo.model.Skills.StrongWeakSkill;
 import br.com.torugo.model.User;
+import br.com.torugo.model.UserSofHardSkill;
 import br.com.torugo.service.SkillsService;
 import org.eclipse.microprofile.graphql.*;
 
-import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @GraphQLApi
 public class SkillsResource {
 
-    private SkillsService service;
+    private SkillsService service = new SkillsService();
     //----------------------------- STRONG AND WEAK SKILLS-------------------------------------
 
     @Query
@@ -46,16 +47,31 @@ public class SkillsResource {
     public List<SoftHardSkill> listAllSoftHardSkill(){
         return this.service.listAllSoftHardSkill();
     }
+    //    @Mutation
+//    @Description("Criar uma nova Competência Técnica ou Comportamental e atribuí-la a um usuário já existente")
+//    public SoftHardSkill addSoftHardSkill(SoftHardSkill skill, @Source(name = "user") User user){
+//        return this.service.addSoftHardSkills(skill, user);
+//    }
+//
+//    @Mutation
+//    @Description("Atualiza uma Competência Forte ou Fraca")
+//    public SoftHardSkill updateSoftHardSkill(SoftHardSkill skill, @Source(name = "id") Long id){
+//        return this.service.updateSoftHardSkill(skill, id);
+//    }
     @Mutation
-    @Description("Criar uma nova Competência Técnica ou Comportamental e atribuí-la a um usuário já existente")
-    public SoftHardSkill addSoftHardSkill(SoftHardSkill skill, @Source(name = "user") User user){
-        return this.service.addSoftHardSkills(skill, user);
+    @Description("Cria e persiste uma lista de Hard e Soft Skills")
+    @Transactional
+    public List<SoftHardSkill> createSoftHardSkills (List<SoftHardSkill> softHardSkillList){
+        for (int i = 0; i< softHardSkillList.size(); i++) {
+            System.out.println("skill_" + i + ": " + softHardSkillList.get(i).getSkill());
+        }
+        return service.createSoftHardSkills(softHardSkillList);
     }
-
     @Mutation
-    @Description("Atualiza uma Competência Forte ou Fraca")
-    public SoftHardSkill updateSoftHardSkill(SoftHardSkill skill, @Source(name = "id") Long id){
-        return this.service.updateSoftHardSkill(skill, id);
+    @Description("Cria e persiste uma lista de Hard e Soft Skills e atribui a um usuario")
+    @Transactional
+    public List<UserSofHardSkill> createUserSoftHardSkill (List<SoftHardSkill> softHardSkillList, Long userId){
+        return service.createUserSoftHardSkill(softHardSkillList, userId);
     }
 
     @Mutation

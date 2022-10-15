@@ -2,12 +2,7 @@ package br.com.torugo.service;
 
 import br.com.torugo.model.College;
 import br.com.torugo.model.Course;
-import br.com.torugo.model.Person;
-import br.com.torugo.model.Skills.SoftHardSkill;
 import br.com.torugo.model.User;
-import io.quarkus.hibernate.orm.panache.Panache;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -18,7 +13,6 @@ import java.util.Objects;
 @ApplicationScoped
 public class UserService {
 
-
     public List<User> listAllUsers(){
         return User.listAll();
     }
@@ -26,9 +20,9 @@ public class UserService {
     @Transactional
     public User addUser(User user){
         College college = new College();
-        List<SoftHardSkill> softHardSkillList = SoftHardSkill.generateSoftHardSkillList();
-        SoftHardSkill.persist(softHardSkillList);
-        user.setSoftHardSkills(softHardSkillList);
+//        List<SoftHardSkill> softHardSkillList = SoftHardSkill.generateSoftHardSkillList();
+//        SoftHardSkill.persist(softHardSkillList);
+//        user.setSoftHardSkills(softHardSkillList);
         user.persist();
         return user;
     }
@@ -50,24 +44,34 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUserCollegeInformation(Long userId, Long courseId) {
-        User entity = User.findById(userId);
-        if(courseId != null ){
-            Course course = Course.findById(courseId);
-            entity.setCourse(course);
+    public User updateUserCollegeInformation(Long userId, College college) {
+        if(college != null ){
+            User entity = User.findById(userId);
+            if(entity.getCollegeInformation() != null){
+                Course course = Course.findById(college.getCourse().id);
+                entity.getCollegeInformation().setCourse(course);
+                entity.getCollegeInformation().setPeriod(college.getPeriod());
+            }else {
+                college.persist();
+                entity.setCollegeInformation(college);
+                Course course = Course.findById(college.getCourse().id);
+
+                entity.getCollegeInformation().setCourse(course);
+                entity.getCollegeInformation().setPeriod(college.getPeriod());
+            }
+            return User.findById(userId);
+        }else {
+            return null;
         }
-        return entity;
     }
 
     @Transactional
     public User updateUserBasicInformation(User user, Long id){
         User updateUser = User.findById(id);
-        if(user.getFirst_name() != null ){
-            updateUser.setFirst_name(user.getFirst_name());
+        if(user.getName() != null ){
+            updateUser.setName(user.getName());
         }
-        if(user.getLast_name() != null ){
-            updateUser.setLast_name(user.getLast_name());
-        }
+
         if(user.getCpf() != null ){
             updateUser.setCpf(user.getCpf());
         }
@@ -100,7 +104,6 @@ public class UserService {
     }
 
 
-
     //--------------------------------- ATUALIZA SENHA --------------------------------
     @Transactional
     public String updatePassWord (Long id, String newPassword){
@@ -108,8 +111,9 @@ public class UserService {
         String oldPassword = user.getPassword_hash();
         if(!Objects.equals(newPassword, oldPassword) & newPassword != null){
             user.setPassword_hash(newPassword);
+            return "Password Updated!";
         }
-        return "Password Updated!";
+       else return "Not Updated!";
     }
 
 

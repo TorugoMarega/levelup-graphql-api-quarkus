@@ -21,7 +21,8 @@ public class Course extends PanacheEntity {
     private University university;
     private String name;
     @OneToMany
-    private List<Person> student;
+    @Column(name = "student_college")
+    private List<College> studentCollege;
 
 
     public static Course findByName(String name){
