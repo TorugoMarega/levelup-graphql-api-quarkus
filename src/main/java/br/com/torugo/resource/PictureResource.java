@@ -6,20 +6,24 @@ import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 
+import javax.transaction.Transactional;
+
 @GraphQLApi
 public class PictureResource {
 
     private PictureService service = new PictureService();
 
     @Mutation
+    @Transactional
     @Description("Atualiza a foto de perfil")
     public User updateProfilePicture(Long id, String newPicture){
         return this.service.updateProfilePicture(id,newPicture);
     }
 
     @Mutation
+    @Transactional
     @Description("Atualiza a foto do Avatar")
-    public String updateAvatarPicture(Long id, String newPicture){
+    public User updateAvatarPicture(Long id, String newPicture){
         return this.service.updateAvatarPicture(id,newPicture);
     }
 

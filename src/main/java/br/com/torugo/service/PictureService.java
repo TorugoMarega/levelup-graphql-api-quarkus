@@ -15,9 +15,10 @@ public class PictureService {
         return user;
     }
     @Transactional
-    public String updateAvatarPicture(Long id, String newPicture){
+    public User updateAvatarPicture(Long id, String newPicture){
         User user = User.findById(id);
         user.setProfile_avatar(newPicture);
-        return newPicture;
+        return user;
     }
+
 }
