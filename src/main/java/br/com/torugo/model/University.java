@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "university")
 public class University extends PanacheEntity {
 
     private String name;

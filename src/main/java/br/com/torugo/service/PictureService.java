@@ -18,6 +18,7 @@ public class PictureService {
     public User updateAvatarPicture(Long id, String newPicture){
         User user = User.findById(id);
         user.setProfile_avatar(newPicture);
+        user.persist();
         return user;
     }
 

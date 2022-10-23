@@ -7,29 +7,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user_soft_hard_skill")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSofHardSkill extends PanacheEntity {
+public class UserSoftHardSkill extends PanacheEntity {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "skill_id")
     private SoftHardSkill skill;
     private Integer level = 0;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-
-//    public void setLevel(Integer level) {
-//        if(Integer.parseInt(level.toString()) <= 10 & Integer.parseInt(level.toString()) >= 0  ){
-//            this.level = level;
-//        }
-//    }
 }

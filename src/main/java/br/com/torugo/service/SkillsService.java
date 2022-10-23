@@ -3,10 +3,11 @@ package br.com.torugo.service;
 import br.com.torugo.model.Skills.SoftHardSkill;
 import br.com.torugo.model.Skills.StrongWeakSkill;
 import br.com.torugo.model.User;
-import br.com.torugo.model.UserSofHardSkill;
+import br.com.torugo.model.UserSoftHardSkill;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -63,25 +64,19 @@ public class SkillsService {
     }
 
     @Transactional
-    public List<UserSofHardSkill> createUserSoftHardSkill (List<SoftHardSkill> softHardSkillList, Long userId){
+    public List<UserSoftHardSkill> createUserSoftHardSkill (List<SoftHardSkill> softHardSkillList, Long userId){
         User updateUser = User.findById(userId);
-        List<UserSofHardSkill> userSofHardSkillsListNew = null;
-
+        List<UserSoftHardSkill> userSoftHardSkillsListNew = new ArrayList<>();
+        System.out.println("SIZE "+ softHardSkillList.size());
         for(int i=0; i<softHardSkillList.size(); i++){
-            UserSofHardSkill userSofHardSkill = new UserSofHardSkill();
-            userSofHardSkill.setUser(updateUser);
-            userSofHardSkill.setSkill(softHardSkillList.get(i));
-            userSofHardSkill.setLevel(0);
-            userSofHardSkillsListNew.add(userSofHardSkill);
-            System.out.println("USUARIOOO: "+ userSofHardSkillsListNew.get(i).getUser().getUsername());
+            UserSoftHardSkill userSoftHardSkill = new UserSoftHardSkill();
+            userSoftHardSkill.setUser(updateUser);
+            userSoftHardSkill.setSkill(softHardSkillList.get(i));
+            userSoftHardSkill.setLevel(0);
+            userSoftHardSkillsListNew.add(userSoftHardSkill);
         }
-
-        //SoftHardSkill.persist(userSofHardSkillsListNew);
-        //updateUser.setSoftHardSkills(userSofHardSkillsListNew);
-//        if(updateUser.isPersistent()){
-//
-//        }
-        return userSofHardSkillsListNew;
+        updateUser.setSoftHardSkills(userSoftHardSkillsListNew);
+        return userSoftHardSkillsListNew;
     }
 
 //    @Transactional
