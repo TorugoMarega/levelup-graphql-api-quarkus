@@ -24,7 +24,6 @@ public class LoginService {
     public String login(Login login){
         User user = userService.findByUserName(login.getNome()).get(0);
 
-     
 
         String token;
         if(login.getSenha().equals(user.getPassword_hash())) {
@@ -39,6 +38,6 @@ public class LoginService {
             return "Usuário ou senha inválido";
         }
 
-        }
+    }
 
 }
