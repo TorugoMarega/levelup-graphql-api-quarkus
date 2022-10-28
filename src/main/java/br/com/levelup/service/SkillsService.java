@@ -82,23 +82,21 @@ public class SkillsService {
 //    @Transactional
 //    public SoftHardSkill updateSoftHardSkillLevel (UserSofHardSkill skill, Long id){
 //        skill.setSkill();
+//        SoftHardSkill updateSoftHardSkill = SoftHardSkill.findById(id);
 //
-//
-////        SoftHardSkill updateSoftHardSkill = SoftHardSkill.findById(id);
-//
-////        if(updateSoftHardSkill.isPersistent()){
-////            if(skill.getSkill() != null ){
-////                updateSoftHardSkill.setSkill(updateSoftHardSkill.getSkill());
-////            }
-////            if(skill.getType() != null ){
-////                updateSoftHardSkill.setType(updateSoftHardSkill.getType());
-////            }
-////            if(skill.getLevel() != null ){
-////                updateSoftHardSkill.setLevel(updateSoftHardSkill.getLevel());
-////            }
-////            updateSoftHardSkill.setSkill(skill.getSkill());
-////            updateSoftHardSkill.persist();
-////        }
+//        if(updateSoftHardSkill.isPersistent()){
+//            if(skill.getSkill() != null ){
+//                updateSoftHardSkill.setSkill(updateSoftHardSkill.getSkill());
+//            }
+//            if(skill.getType() != null ){
+//                updateSoftHardSkill.setType(updateSoftHardSkill.getType());
+//            }
+//            if(skill.getLevel() != null ){
+//                updateSoftHardSkill.setLevel(updateSoftHardSkill.getLevel());
+//            }
+//            updateSoftHardSkill.setSkill(skill.getSkill());
+//            updateSoftHardSkill.persist();
+//        }
 //        return updateSoftHardSkill;
 //    }
 

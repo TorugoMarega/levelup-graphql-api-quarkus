@@ -95,9 +95,9 @@ public class UserService {
     public List<User> findByUserName(String username){
         return User.findByUserNameContaining(username);
     }
-//    public List<User> findByPersonName(String name){
-//        return User.findByPersonNameContaining(name);
-//    }
+    public List<User> findByName(String name){
+        return User.findByNameContaining(name);
+    }
 
     public List<User> findByDeleted(Boolean deleted){
         return User.findByDeleted(deleted);

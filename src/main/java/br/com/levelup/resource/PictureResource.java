@@ -27,12 +27,4 @@ public class PictureResource {
         return this.service.updateAvatarPicture(id,newPicture);
     }
 
-////
-////    @Mutation
-////    @Description("Upload imagem")
-////    @Consumes(MediaType.MULTIPART_FORM_DATA)
-////    public String uploadProfilePicture (InputStream input){
-////        input.
-////        return "Upload com sucesso!";
-////    }
 }

@@ -60,11 +60,6 @@ public class UserResource {
        user.getCollegeInformation().delete();
        return "Deleted";
     }
-//    @Mutation
-//    @Transactional
-//    public User updateUser(User user, @Name("id") Long id){
-//        return this.service.updateUser(user, id);
-//    }
 
     @Query
     @Name("listAllUsers")
@@ -97,18 +92,17 @@ public class UserResource {
         return this.service.findUserById(id);
     }
 
-//    @Query
-//    @Description("Retorna lista de usuários com determinado Nome ou Sobrenome")
-//    public List<User> findByPersonName (@Name("name") String name){
-//        return this.service.findByPersonName(name);
-//    }
+    @Query
+    @Description("Retorna lista de usuários com determinado Nome ou Sobrenome")
+    public List<User> findByName (@Name("name") String name){
+        return this.service.findByName(name);
+    }
 
     @Query
     @Description("Retorna lista de usuários ativos ou inativos")
     public List<User> findByDeleted (@Name("deleted") Boolean deleted){
         return this.service.findByDeleted(deleted);
     }
-
 }
 
 

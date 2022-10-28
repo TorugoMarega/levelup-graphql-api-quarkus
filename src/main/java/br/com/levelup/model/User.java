@@ -18,32 +18,28 @@ import java.util.List;
 @Setter
 public class User extends PanacheEntity {
 
-    @Column(name = "first_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "birthdate")
     @JsonbDateFormat(value = "dd/MM/yyyy", locale = "pt,br")
     private LocalDate birthdate;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf",  unique = true, length = 11)
     private String cpf;
 
     @Column(length = 12)
     private String userMood = UserMood.NEUTRO.toString();
 
-    //@Column(unique = true)
+    @Column(unique = true)
     private String username;
 
-    //@Column(unique = true)
+    @Column(unique = true)
     private String email;
 
 
     private String password_hash;
 
-//    @ManyToOne
-//    @JoinColumn(name = "course_id")
-//    @Nullable
-//    private Course course;
 
 
     @ManyToOne
@@ -89,8 +85,8 @@ public class User extends PanacheEntity {
         return find("username like CONCAT('%',?1, '%') ", username).list();
     }
 
-    public static List<User> findByPersonNameContaining(String name) {
-        return find("person.first_name || person.last_name  like CONCAT('%',?1, '%') ", name).list();
+    public static List<User> findByNameContaining(String name) {
+        return find("name like CONCAT('%',?1, '%') ", name).list();
     }
 
     public static List<User> findByDeleted(Boolean deleted) {
