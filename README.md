@@ -1,3 +1,16 @@
+# Indice
+
+* [Introdução](#introduo)
+* [O que é Quarkus?](#o-que--quarkus)
+* [O que é GraalVM?](#o-que--graalvm)
+* [O que é Docker?](#o-que--docker)
+* [Para testar as Rotas da API](#para-testar-as-rotas-da-api)
+* [Ambiente de Desenvolvimento Integrado (IDE)](#ambiente-de-desenvolvimento-integrado-ide)
+* [GraphQl](#graphql)
+* [Começando](#comeando)
+* [Rodando o Projeto em Ambiente de Desenvolvimento](#rodando-o-projeto-em-ambiente-de-desenvolvimento)
+* [Mãos à Obra](#mos--obra)
+
 # Introdução
 Nosso BackEnd está sendo construído utilizando a linguagem de programação **Java**, framework **Quarkus**, banco de dados **MySql** e a linguagem de consultas **GraphQl** .
 
@@ -84,7 +97,7 @@ Rodando o Projeto em Ambiente de Desenvolvimento
 Você já deve ter percebido que diferentemente de uma aplicação padrão Java ou Spring não existe explicitamente um método **Main**, ou seja, apertar no start da sua IDE não vai fazer rodar a aplicação.
 O Quarkus traz o Maven Wrapper (mvnw), tirando a necessidade de possuir o Maven instalado no seu computador, além disso ele também despreza a necessidade de possuir os serviços de banco de dados instalado em sua máquina, por se tratar de um framework *Container First*, ele baixa tudo que é necessário em imagêns de container, cria e configura o container automaticamente no Docker.
 
-Para rodar a aplicação será necessário abrir o Docker, em seguida abra o terminal de sua preferência (Prompt de comando, PowerShell...) na pasta raiz do projeto e digitará o comando:
+Para rodar a aplicação será necessário abrir o Docker, em seguida abra o terminal de sua preferência (Prompt de comando, PowerShell...) na pasta raiz do projeto e digite o comando:
 
 ```
 ./mvnw quarkus:dev
