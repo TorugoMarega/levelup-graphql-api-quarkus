@@ -15,7 +15,7 @@ public class TesteToken {
 
     public static void main(String[] args) throws Exception {
 
-        String privateKeyLocation = "/privatekey.pem";
+        String privateKeyLocation = "privatekey.pem";
         PrivateKey privateKey = KeyUtils.readPrivateKey(privateKeyLocation);
 
         JwtClaimsBuilder claimsBuilder = Jwt.claims();
