@@ -1,15 +1,15 @@
 # Indice
 
-* [Introdução](#introduo)
-* [O que é Quarkus?](#o-que--quarkus)
-* [O que é GraalVM?](#o-que--graalvm)
-* [O que é Docker?](#o-que--docker)
+* [Introdução](#introdução)
+* [O que é Quarkus?](#o-que-é-quarkus)
+* [O que é GraalVM?](#o-que-é-graalvm)
+* [O que é Docker?](#o-que-é-docker)
 * [Para testar as Rotas da API](#para-testar-as-rotas-da-api)
 * [Ambiente de Desenvolvimento Integrado (IDE)](#ambiente-de-desenvolvimento-integrado-ide)
 * [GraphQl](#graphql)
-* [Começando](#comeando)
+* [Começando](#começando)
 * [Rodando o Projeto em Ambiente de Desenvolvimento](#rodando-o-projeto-em-ambiente-de-desenvolvimento)
-* [Mãos à Obra](#mos--obra)
+* [Mãos à Obra](#mãos-à-obra)
 
 # Introdução
 Nosso BackEnd está sendo construído utilizando a linguagem de programação **Java**, framework **Quarkus**, banco de dados **MySql** e a linguagem de consultas **GraphQl** .
