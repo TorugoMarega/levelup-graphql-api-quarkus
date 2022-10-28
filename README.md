@@ -11,7 +11,9 @@
 * [Rodando o Projeto em Ambiente de Desenvolvimento](#rodando-o-projeto-em-ambiente-de-desenvolvimento)
 * [Mãos à Obra](#mãos-à-obra)
 
-# Introdução
+Introdução
+=============
+----
 Nosso BackEnd está sendo construído utilizando a linguagem de programação **Java**, framework **Quarkus**, banco de dados **MySql** e a linguagem de consultas **GraphQl** .
 
 Antes de começar o desenvolvimento, será necessário preparar o ambiente de desenvolvimento para suportar o Java com Quarkus.
@@ -130,7 +132,19 @@ Hibernate:
         user user0_
 ```
 
-Você poderá realizar os testes no Postman, faça o download da [**coleção de rotas**](https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2FTorugoMarega%2Flevelup-graphql-api-quarkus%2Fblob%2FColecao_Postman%2Flevelup-graphql.postman_collection.json) e importe para o seu postman, nesta coleção estão todas as rotas criadas até o momento e separadas por pastas. Dentro de cada pasta principal há outras 2 pastas, **Query e Mutation**. A pasta **Query** se refere a requisições que não alteram o banco de dados, apenas retornam dados. Já a pasta **Mutation** se refere a requisições que manipulam banco de dados, como: criar um registro novo ou atualizar um existente. Na pasta "Teste de conexão" há uma rota para testar a conexão com a API, rode e verifique se está tudo funcionando corretamente, se tudo estiver certo será retornada uma mensagem "Conexão Estabelecida!".
+Você poderá realizar os testes no Postman, faça o download da [**coleção de rotas**](https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2FTorugoMarega%2Flevelup-graphql-api-quarkus%2Fblob%2FColecao_Postman%2Flevelup-graphql.postman_collection.json) e importe para o seu postman, nesta coleção estão todas as rotas criadas até o momento e separadas por pastas. Dentro de cada pasta principal há outras 2 pastas, **Query e Mutation**. A pasta **Query** se refere a requisições que não alteram o banco de dados, apenas retornam dados. Já a pasta **Mutation** se refere a requisições que manipulam banco de dados, como: criar um registro novo ou atualizar um existente. Na pasta "Teste de conexão" há uma rota para testar a conexão com a API,
+
+```
+query{
+    testConnection
+}
+```
+
+rode e verifique se está tudo funcionando corretamente, se tudo estiver certo será retornada uma mensagem: 
+
+```
+"Conexão Estabelecida!"
+```
 
 Mãos à Obra
 =============
