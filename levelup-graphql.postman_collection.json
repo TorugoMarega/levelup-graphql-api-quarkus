@@ -1,0 +1,1007 @@
+{
+	"info": {
+		"_postman_id": "df6aedd8-6589-4a0c-8f5c-3c4781547ce1",
+		"name": "levelup-graphql",
+		"description": "Rotas da API Graphql da Aplicação do LevelUp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20305046"
+	},
+	"item": [
+		{
+			"name": "Test Connection",
+			"item": [
+				{
+					"name": "Test Connection",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n    testConnection\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "Rota para teste de conexão com a API, caso esteja tudo funcionando será retornado uma mensagem \"Conexão estabelecida!\""
+					},
+					"response": []
+				},
+				{
+					"name": "List All Query and Mutation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/graphql/schema.graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql",
+								"schema.graphql"
+							]
+						},
+						"description": "Retorna uma página HTML contendo todas as consultas da API, todos os tipos de Objetos, argumentos necessários de cada consulta, retornos disponíveis e tipos de dados."
+					},
+					"response": []
+				}
+			],
+			"description": "Rotas de estabelecimento de conexão e listagem de todas as rotas, contendo todos os parâmetros necessários para o envio da requisição e qual será o tipo de dado retornado."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "query",
+					"item": [
+						{
+							"name": "List All Data of all Users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tlistAllUsers {\r\n\t\tid\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tclasse\r\n\t\tcolor_hex\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tcreation_date\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								},
+								"description": "Pode retornar todos os dados de todos os usuários, você define quais dados você quer retornar, essa é a mágica do GraphQl. Por exemplo:\n\n1. Se você quer retornar apenas nome, email e cpf:\n    \n\n``` graphql\nquery {\n    listAllUsers {\n        name\n        cpf\n        email\n    }\n}\n\n\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tfindById(id: 1) {\r\n\t\tid\r\n\t\tclasse\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tsoftHardSkills {\r\n\t\t\tid\r\n\t\t\tskill {\r\n\t\t\t\tskill\r\n\t\t\t\ttype\r\n\t\t\t}\r\n\t\t\tlevel\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								},
+								"description": "Retorna um usuário através de seu ID, deverá ser passado o id de um usuário previamente cadastrado, caso contrário será retornado um erro."
+							},
+							"response": []
+						},
+						{
+							"name": "Find By UserName",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tfindByUserName (\r\n        username:\"JoaoGamer\"\r\n    ){\r\n\t\tid\r\n\t\tclasse\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tsoftHardSkills {\r\n\t\t\tid\r\n\t\t\tskill {\r\n\t\t\t\tskill\r\n\t\t\t\ttype\r\n\t\t\t}\r\n\t\t\tlevel\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tfindByName (\r\n        name:\"Joao\"\r\n    ){\r\n\t\tid\r\n\t\tclasse\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tsoftHardSkills {\r\n\t\t\tid\r\n\t\t\tskill {\r\n\t\t\t\tskill\r\n\t\t\t\ttype\r\n\t\t\t}\r\n\t\t\tlevel\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Deleted True",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tfindByDeleted (\r\n        deleted:true\r\n    ){\r\n\t\tid\r\n\t\tclasse\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tsoftHardSkills {\r\n\t\t\tid\r\n\t\t\tskill {\r\n\t\t\t\tskill\r\n\t\t\t\ttype\r\n\t\t\t}\r\n\t\t\tlevel\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Deleted False",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n\tfindByDeleted (\r\n        deleted:false\r\n    ){\r\n\t\tid\r\n\t\tclasse\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tsoftHardSkills {\r\n\t\t\tid\r\n\t\t\tskill {\r\n\t\t\t\tskill\r\n\t\t\t\ttype\r\n\t\t\t}\r\n\t\t\tlevel\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "mutation",
+					"item": [
+						{
+							"name": "Create User 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n\taddUser(\r\n\t\tuser: {\r\n\t\t\tname: \"João Baptista\"\r\n\t\t\tcpf: \"11112147608\"\r\n\t\t\tbirthdate: \"29/01/2000\"\r\n\t\t\tusername: \"JoaoGamer\"\r\n\t\t\temail: \"joaogamer@teste.com\"\r\n\t\t\tpassword_hash: \"@#!324asdadkllkj_*&sdfas\"\r\n\t\t\tclasse: \"MAGO\"\r\n\t\t}\r\n\t) {\r\n\t\tid\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\thobbies {\r\n\t\t\tid\r\n\t\t\thobbie\r\n\t\t}\r\n\t\tspecialties {\r\n\t\t\tid\r\n\t\t\tspeciality\r\n\t\t}\r\n\t\tstrongWeakSkills {\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Basic Information",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n\tupdateUserBasicInformation(\r\n\t\tid: 1\r\n\t\tuser: { \r\n            username: \"Joazinho123\"\r\n            email: \"joaogamer123@teste.com\"\r\n        }\r\n\t) {\r\n\t\tid\r\n\t\tname\r\n\t\tbirthdate\r\n\t\tcpf\r\n\t\tusername\r\n\t\temail\r\n\t\tpassword_hash\r\n\t\tcollegeInformation {\r\n\t\t\tid\r\n\t\t\tcourse {\r\n\t\t\t\tid\r\n\t\t\t\tname\r\n\t\t\t\tuniversity {\r\n\t\t\t\t\tid\r\n\t\t\t\t\tname\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tperiod\r\n\t\t}\r\n\t\tcolor_hex\r\n\t\tuserMood\r\n\t\trole\r\n\t\tprofile_avatar\r\n\t\tprofile_picture\r\n\t\tdeleted\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n    login(\r\n        login:{\r\n        nome: \"JoaoGamer\"\r\n        senha : \"@#!324asdadkllkj_*&sdfas\"\r\n     }) \r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Nesta pasta estão todas as rotas referentes especificamente à classe de usuários, contendo um CRUD completo e alguns filtros de pesquisa.\n\n- **Na pasta Query estão as operações que não realizam alterações no banco de dados, apenas consultas.**\n- **Na pasta mutation estão as rotas que realizam alterações no banco de dados.**"
+		},
+		{
+			"name": "Hobbie",
+			"item": [
+				{
+					"name": "Add Hobbie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  addHobbie(\r\n  hobbie:{\r\n  hobbie:\"Jogar Futebol, Desenhar, Jardinagem\"\r\n  }\r\n  user:{\r\n    id:1\r\n  }\r\n  ){\r\n    id,hobbie,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Hobbie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  updateHobbie(\r\n  hobbie:{\r\n    hobbie:\"jogar videogame\"\r\n  }\r\n    id:1 \r\n  ){\r\n    id,hobbie,user{\r\n      id\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hobbie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  deleteHobbie(id:2)\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Hobbies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n    listAllHobbies{\r\n        hobbie\r\n        id \r\n    }\r\n} \r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Specialities",
+			"item": [
+				{
+					"name": "Add Speciality",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  addSpeciality(\r\n  speciality:{\r\n  speciality:\"Front end, Jogos de FPS, Culinária\"\r\n  }\r\n  user:{\r\n    id:1\r\n  }\r\n  ){\r\n    id,speciality,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Speciality",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  updateSpeciality(\r\n  speciality:{\r\n    speciality:\"Tocar pop\"\r\n  }\r\n    id:6\r\n  ){\r\n    id,speciality,\r\n    user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Speciality",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  deleteSpeciality(id:3)\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Specialities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n    listAllHobbies{\r\n        hobbie\r\n        id \r\n    }\r\n} \r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Strong or Weak Skills",
+					"item": [
+						{
+							"name": "Add Strong",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation{\r\n  addStrongWeakSkills(\r\n  skill:{\r\n    skill:\"Trabalho em Equipe, Inteligencia emocional\"\r\n    type:STRONG\r\n  }\r\n  user:{\r\n    id:1\r\n  }\r\n  ){\r\n    id,skill,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Strong",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation{\r\n  updateStrongWeakSkills(\r\n\t\tid:5\r\n  skill:{\r\n    skill:\"Trabalho em Equipe, Inteligência emocional, Resiliência\"\r\n    type:STRONG\r\n  }\r\n  ){\r\n    id,skill,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Weak",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation{\r\n  addStrongWeakSkills(\r\n  skill:{\r\n    skill:\"Organização, Timidez\"\r\n    type:WEAK\r\n  }\r\n  user:{\r\n    id:1\r\n  }\r\n  ){\r\n    id,skill,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Weak",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation{\r\n  updateStrongWeakSkills(\r\n\t\tid:6\r\n  skill:{\r\n    skill:\"Organização, Timidez, Gestão de tempo\"\r\n    type:WEAK\r\n  }\r\n  ){\r\n    id,skill,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Soft or Hard Skills",
+					"item": [
+						{
+							"name": "Create Soft or Hard Skill",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n\tcreateSoftHardSkills(\r\n\t\tsoftHardSkillList: [\r\n\t\t\t{ skill: \"Métodos ágeis\", type: HARD }\r\n\t\t\t{ skill: \"FrontEnd\", type: HARD }\r\n\t\t\t{ skill: \"BackEnd\", type: HARD }\r\n\t\t\t{skill:\"Programação Básica\", type:HARD}\r\n\t\t\t{skill:\"Pacote Office\", type:HARD}\r\n\t\t]\r\n\t) {\r\n\t\tid\r\n\t\tskill\r\n\t\ttype\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Soft or Hard Skill",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation{\r\n  updateSoftHardSkill(\r\n  skill:{\r\n    skill:\"Trabalho em Equipe\"\r\n    level: 1\r\n  }\r\n    id:1\r\n  ){\r\n    id,skill,user{\r\n      id\r\n      username\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Soft or Hard Skill List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n\tcreateUserSoftHardSkill(\r\n\t\tuserId: 1\r\n\t\tsoftHardSkillList: [\r\n\t\t\t{ skill: \"Métodos ágeis\", type: HARD }\r\n\t\t\t{ skill: \"FrontEnd\", type: HARD }\r\n\t\t\t{ skill: \"BackEnd\", type: HARD }\r\n\t\t\t{ skill: \"Programação Básica\", type: HARD }\r\n\t\t\t{ skill: \"Pacote Office\", type: HARD }\r\n\t\t\t{ skill: \"Empreendedorismo\", type: SOFT }\r\n\t\t]\r\n\t) {\r\n\t\tid\r\n\t\tskill{\r\n\t\t\tid\r\n\t\t\tskill\r\n\t\t\ttype\r\n\t\t}\r\n\t\tuser {\r\n\t\t\tid\r\n\t\t\tusername\r\n\t\t}\r\n\t}\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Soft or Hard Skill",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n  listAllSoftHardSkill\r\n    {\r\n    id\r\n    skill\r\n    type\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mood",
+			"item": [
+				{
+					"name": "Update User Mood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    updateUserMood(\r\n      id:1,\r\n      userMood:FELIZ\r\n    ){\r\n    id,username,userMood\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Mood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n   listAllMood\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Picture Service",
+			"item": [
+				{
+					"name": "Update Avatar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n\tupdateAvatarPicture(\r\n\t\tid: 1\r\n\t\tnewPicture: \"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\"\r\n\t) {\r\n\t\tid\r\n\t\tname\r\n\t\tprofile_avatar\r\n\t}\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Picture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n\tupdateProfilePicture(\r\n\t\tid: 1\r\n\t\tnewPicture: \"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\"\r\n\t) {\r\n\t\tid\r\n\t\tname\r\n\t\tprofile_picture\r\n\t}\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "College",
+			"item": [
+				{
+					"name": "Create University",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  createUniversity(\r\n    university:{\r\n        name:\"IFTM\"\r\n    }\r\n  ){\r\n    id\r\n    name\r\n    courses{\r\n        id\r\n        name\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  createCourse(\r\n    course:{\r\n        name:\"Licenciatura em Computação\",\r\n        university:{\r\n            id:2\r\n        }\r\n    }\r\n \r\n    \r\n  ){\r\n    id\r\n    name\r\n    university{\r\n        id,name\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update College Info of User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  updateUserCollegeInformation(\r\n    userId:1\r\n    college:{\r\n        course:{\r\n            id:3\r\n        }\r\n        period:2\r\n    }\r\n  ){\r\n    id\r\n\t\tname\r\n    email\r\n    cpf\r\n    collegeInformation{\r\n            id\r\n            course{\r\n                id\r\n                name\r\n                \r\n                university{\r\n                    id\r\n                    name\r\n                }\r\n            }\r\n            period\r\n        }   \r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Universities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  listAllUniversities{\r\n        id\r\n        name\r\n        courses{\r\n            id\r\n            name\r\n        }\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Courses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  listAllCourses{\r\n    id\r\n    name\r\n    \r\n    university{\r\n        id\r\n        name   \r\n    }\r\n\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
