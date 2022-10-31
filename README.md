@@ -62,7 +62,7 @@ Para realizar os testes da API eu aconselho que utilizem o software [Postman](ht
 Ambiente de Desenvolvimento Integrado (IDE)
 =============
 ----
-Recomendo utilizar o **IntelliJ IDE** para programar com o Quarkus, pois o IntelliJ é mais leve que o Eclipse (E o Docker vai consumir bastante memória RAM, então já pega o ovo pq o pc vai fritar), além disso o Intellij possui um plugin para trabalhar com o Quarkus, o que acaba acelerando e facilitando o desenvolvimento. Outra opção mais leve que o Eclipse é o Visual Studio Code, mas já deixo a dica, o Intellij funciona melhor que o VS Code quando o assunto é Java.
+Recomendo utilizar o **IntelliJ IDE** para programar com o Quarkus, pois o IntelliJ é mais leve que o Eclipse (E o Docker vai consumir bastante memória RAM, então já pega o ovo porque o pc vai fritar), além disso o Intellij possui um plugin para trabalhar com o Quarkus, o que acaba acelerando e facilitando o desenvolvimento. Outra opção mais leve que o Eclipse é o Visual Studio Code, mas já deixo a dica, o Intellij funciona melhor que o VS Code quando o assunto é Java.
 
 [IntelliJ IDE Community Edition](https://www.jetbrains.com/idea/download/#section=windows)
 
@@ -140,7 +140,7 @@ query{
 }
 ```
 
-rode e verifique se está tudo funcionando corretamente, se tudo estiver certo será retornada uma mensagem: 
+rode e verifique se está tudo funcionando corretamente, se tudo estiver certo será retornada uma mensagem:
 
 ```
 "Conexão Estabelecida!"
